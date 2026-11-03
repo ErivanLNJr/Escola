@@ -1,5 +1,5 @@
 class Interface {
-  static btnSalvar() {
+  static salvarAluno() {
     let nome = document.getElementById('nome').value;
     let n1 = Number(document.getElementById('n1').value);
     let n2 = Number(document.getElementById('n2').value);
@@ -17,12 +17,14 @@ class Interface {
     const btnListar = document.getElementById('btn-listar');
     const tabListar = document.getElementById('tab-listar');
 
+    btncadastrarTurma.classList.remove('active');
     btnListar.classList.add('active');
     btnCadastrar.classList.remove('active');
-
-    // Ajusta o conteúdo visível
+l
+    tabCadastrarTurma.classList.remove('active');
     tabListar.classList.add('active');
     tabCadastrar.classList.remove('active');
+
     let lista = '<table>';
     lista += '<tr><th>Nome</th> <th>U1</th> <th>U2</th> <th>U3</th> <th>Media</th> <th>Situação</th></tr>';
     for (let i = 0; i < turma.length; i++) {
@@ -41,16 +43,30 @@ class Interface {
   }
 
   static cadastrar() {
+    const btncadastrarTurma = document.getElementById('btn-cadastrar-turma');
+    const tabCadastrarTurma = document.getElementById('tab-cadastrar-turma');
     const btnCadastrar = document.getElementById('btn-cadastrar');
     const tabCadastrar = document.getElementById('tab-cadastrar');
     const btnListar = document.getElementById('btn-listar');
     const tabListar = document.getElementById('tab-listar');
 
+    btncadastrarTurma.classList.remove('active');
     btnListar.classList.remove('active');
     btnCadastrar.classList.add('active');
 
+    tabCadastrarTurma.classList.remove('active');
     tabListar.classList.remove('active');
     tabCadastrar.classList.add('active');
     //document.getElementById("media").innerHTML = m;
+  }
+
+  static cadastraTurma(){
+    btncadastrarTurma.classList.add('active');
+    btnListar.classList.remove('active');
+    btnCadastrar.classList.remove('active');
+
+    tabCadastrarTurma.classList.add('active');
+    tabListar.classList.remove('active');
+    tabCadastrar.classList.remove('active');
   }
 }
