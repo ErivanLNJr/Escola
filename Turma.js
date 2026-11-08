@@ -2,7 +2,7 @@ class Turma{
   professor;
   curso;
   alunos = [];
-  construct(prof,curso){
+  constructor(prof,curso){
     this.professor = prof;
     this.curso = curso;
   }

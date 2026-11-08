@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="./tabStyle.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="Aluno.js" defer></script>
+    <script src="Turma.js" defer></script>
     <script src="Interface.js" defer></script>
+    <script src="Utils.js" defer></script>
     <script src="main.js" defer></script>
     <title>Sistema Escolar</title>
   </head>
@@ -15,10 +17,17 @@
     <div class="tabs-container">
       <button
         class="tab-button active"
+        id="btn-cadastrar-turma"
+        onclick="Interface.cadastrarTurma()"
+      >
+        Cadastrar Turma
+      </button>
+      <button
+        class="tab-button"
         id="btn-cadastrar"
         onclick="Interface.cadastrar()"
       >
-        Cadastrar
+        Cadastrar Aluno
       </button>
       <button
         class="tab-button"
@@ -29,17 +38,26 @@
       </button>
     </div>
 
-    <!-- Conteúdo da Aba 1: Cadastrar -->
-    <div id="tab-cadastrar" class="tab-content active">
+    <!-- Conteúdo da Aba 1: Cadastrar Turma -->
+    <div id="tab-cadastrar-turma" class="tab-content active">
+      Curso: <input id="curso" type="text"/>
+      Professor: <input id="nomeProfessor" type="text"/>
+      <button onclick="Interface.btnSalvar()" class="btn-salvar">
+      Salvar
+      </button>
+    </div>
+
+    <!-- Conteúdo da Aba 2: Cadastrar Aluno -->
+    <div id="tab-cadastrar" class="tab-content">
       Nome: <input id="nome" type="text" /> Nota 1:
       <input id="n1" type="text" /> Nota 2: <input id="n2" type="text" /> Nota
       3: <input id="n3" type="text" />
       <button onclick="Interface.btnSalvar()" class="btn-salvar">
-        Salvar Aluno
+        Salvar
       </button>
     </div>
 
-    <!-- Conteúdo da Aba 2: Listar -->
+    <!-- Conteúdo da Aba 3: Listar Alunos na turma -->
     <div id="tab-listar" class="tab-content">
       <h3>Alunos Cadastrados</h3>
       <ul class="lista-alunos" id="alunos">
