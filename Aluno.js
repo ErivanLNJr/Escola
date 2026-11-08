@@ -13,9 +13,6 @@ class Aluno {
   getNotas(){
     return this.#notas;
   }
-  cursando(disciplina) {
-    this.materia.push(disciplina);
-  }
   gerarMedia() {
     let [nota1,nota2,nota3] = this.#notas;
     let m = (nota1 + nota2 + nota3) / 3;
