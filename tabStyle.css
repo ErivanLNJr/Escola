@@ -41,3 +41,19 @@
 #alunos th:last-child, #turmas th:last-child {
   border-radius: 0 8px 8px 0;
 }
+/* Ajusta o tamanho e o visual das caixas de nota na tabela */
+table input[type="number"] {
+  width: 65px;             /* Largura ideal para exibir "0.00" com folga */
+  padding: 6px 4px;        /* Espaçamento interno confortável */
+  text-align: center;      /* Centraliza o número dentro da caixa */
+  font-size: 14px;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+/* Remove as setinhas nativas do campo numérico para economizar espaço */
+table input[type="number"]::-webkit-outer-spin-button,
+table input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

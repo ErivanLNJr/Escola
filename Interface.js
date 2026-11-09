@@ -4,6 +4,18 @@ class Interface {
     this.indice_de_turma = indice;
     alert('Turma de '+turmas[indice].curso+' ('+turmas[indice].professor+') selecionada')
   }
+  static atualizarNota(indiceAluno, indiceNota, novaNota){
+    let aluno = turmas[this.indice_de_turma].alunos[indiceAluno];
+    let notas = aluno.getNotas();
+    notas[indiceNota] = Number(novaNota);
+
+    aluno.setNotas(notas[0], notas[1], notas[2]);
+    aluno.gerarMedia();
+    aluno.gerarEstado();
+
+    this.listarAluno();
+    alert(...notas);
+  }
   static btnSalvar() {
     const tabTurma = document.getElementById('tab-cadastrar-turma');
     const tabCadastrar = document.getElementById('tab-cadastrar');
@@ -26,19 +38,10 @@ class Interface {
         return;
       }
       let nome = document.getElementById('nome').value;
-      let n1 = Number(document.getElementById('n1').value);
-      let n2 = Number(document.getElementById('n2').value);
-      let n3 = Number(document.getElementById('n3').value);
-      let a1 = new Aluno(nome);
-      a1.setNotas(n1, n2, n3);
-      let m = a1.gerarMedia();
-      let est = a1.gerarEstado(m);
-      turmas[this.indice_de_turma].addAluno(a1);
+      let aluno = new Aluno(nome);
+      turmas[this.indice_de_turma].addAluno(aluno);
       alert('aluno cadastrado');
       document.getElementById('nome').value = '';
-      document.getElementById('n1').value = '';
-      document.getElementById('n2').value = '';
-      document.getElementById('n3').value = '';
     }
   }
   static listarAluno() {
@@ -51,16 +54,18 @@ class Interface {
     
     let turma = turmas[this.indice_de_turma]
     lista += '<b>'+ turma.curso +' ('+ turma.professor +')</b>'
-    lista += '<tr><th>Nome</th> <th>U1</th> <th>U2</th> <th>U3</th> <th>Media</th> <th>Situação</th></tr>';
+    lista += '<tr><th>Nome</th> <th>Unidade 1</th> <th>Unidade 2</th> <th>Unidade 3</th> <th>Media</th> <th>Situação</th></tr>';
     for (let i = 0; i < turma.alunos.length; i++) {
+      let nota = turma.alunos[i].getNotas();
+      let nNotas = nota;
       lista = lista
         + '<tr>' 
         + '<td>' + turma.alunos[i].nome + '</td>'
-        + '<td>' + turma.alunos[i].getNotas()[0].toFixed(2) + '</td>'
-        + '<td>' + turma.alunos[i].getNotas()[1].toFixed(2) + '</td>'
-        + '<td>' + turma.alunos[i].getNotas()[2].toFixed(2) + '</td>'
-        + '<td>' + turma.alunos[i].media.toFixed(2) +'</td>'
-        + '<td>' + turma.alunos[i].estado + '</td>'
+        + '<td><input type="number" min="0" max="10" step="0.1" value="'+ nota[0].toFixed(2) + '" onchange="Interface.atualizarNota('+i+',0,this.value)"></td>'
+        + '<td><input type="number" min="0" max="10" step="0.1" value="'+ nota[1].toFixed(2) + '" onchange="Interface.atualizarNota('+i+',1,this.value)"></td>'
+        + '<td><input type="number" min="0" max="10" step="0.1" value="'+ nota[2].toFixed(2) + '" onchange="Interface.atualizarNota('+i+',2,this.value)"></td>'
+        + '<td>' + turma.alunos[i].gerarMedia().toFixed(2) +'</td>'
+        + '<td>' + turma.alunos[i].gerarEstado() + '</td>'
         + '</tr>';
     }
     

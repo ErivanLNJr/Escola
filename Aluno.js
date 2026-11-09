@@ -2,8 +2,8 @@ class Aluno {
   nome;
   #notas = [0.0,0.0,0.0];
   materia = [];
-  estado;
-  media;
+  estado = 'cursando';
+  media = 0;
   constructor(nome) {
     this.nome = nome;
   }
@@ -11,7 +11,7 @@ class Aluno {
     this.#notas = [n1,n2,n3];
   }
   getNotas(){
-    return this.#notas;
+    return [...this.#notas];
   }
   gerarMedia() {
     let [nota1,nota2,nota3] = this.#notas;
@@ -19,8 +19,9 @@ class Aluno {
     this.media = m;
     return m;
   }
-  gerarEstado(media) {
+  gerarEstado() {
     let est;
+    let media=this.media;
     if (media >= 6) {
       est = 'Aprovado';
     } else if (media >= 3) {
